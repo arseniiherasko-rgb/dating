@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swipe Dating UI</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      min-height: 100vh;
+      background: #050505;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .app {
+      width: 100vw;
+      height: 100vh;
+      max-width: 430px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      background: #070707;
+    }
+
+    .statusbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 42px;
+      padding: 0 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 80;
+      font-size: 17px;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0,0,0,.45);
+      pointer-events: none;
+    }
+
+    .status-icons {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 15px;
+    }
+
+    .header-tabs {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      right: 0;
+      height: 50px;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 70;
+      pointer-events: none;
+    }
+
+    .filter-icon,
+    .boost-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      color: rgba(255,255,255,.9);
+      text-shadow: 0 2px 12px rgba(0,0,0,.45);
+    }
+
+    .boost-icon { color: #b936ff; filter: drop-shadow(0 0 8px rgba(185,54,255,.45)); }
+
+    .tabs {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      pointer-events: auto;
+    }
+
+    .tab {
+      padding: 11px 17px;
+      border-radius: 999px;
+      font-size: 17px;
+      font-weight: 700;
+      color: rgba(255,255,255,.9);
+      background: rgba(0,0,0,.12);
+      backdrop-filter: blur(12px);
+      text-shadow: 0 2px 12px rgba(0,0,0,.32);
+      white-space: nowrap;
+    }
+
+    .tab.active {
+      background: rgba(47,39,31,.72);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), 0 8px 18px rgba(0,0,0,.22);
+    }
+
+    .cards {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+    }
+
+    .card {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      touch-action: none;
+      cursor: grab;
+      transform-origin: center bottom;
+      transition: transform .42s cubic-bezier(.22,.9,.3,1), opacity .32s ease;
+      background: #111;
+      will-change: transform, opacity;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.52) 0%, rgba(0,0,0,0) 24%),
+        linear-gradient(0deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.36) 24%, rgba(0,0,0,0) 52%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .profile-info {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 168px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .name-row {
+      font-size: 42px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      text-shadow: 0 3px 16px rgba(0,0,0,.55);
+    }
+
+    .tagline {
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      opacity: .9;
+      text-shadow: 0 2px 10px rgba(0,0,0,.45);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.16);
+      backdrop-filter: blur(10px);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .stamp {
+      position: absolute;
+      top: 150px;
+      z-index: 4;
+      padding: 9px 18px;
+      border: 4px solid currentColor;
+      border-radius: 10px;
+      font-size: 34px;
+      font-weight: 950;
+      letter-spacing: .03em;
+      opacity: 0;
+      pointer-events: none;
+      text-transform: uppercase;
+      transform: rotate(-16deg);
+    }
+
+    .stamp.like { left: 26px; color: #42f581; }
+    .stamp.nope { right: 26px; color: #ff365f; transform: rotate(16deg); }
+
+    .actions {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 34px;
+      z-index: 60;
+      pointer-events: none;
+    }
+
+    .action-btn {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(31,31,34,.72);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 16px 34px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.04);
+      display: grid;
+      place-items: center;
+      font-size: 40px;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .action-btn:active { transform: scale(.92); }
+    .action-btn.nope { color: #ff2559; text-shadow: 0 0 14px rgba(255,37,89,.38); }
+    .action-btn.like { color: #70f05f; text-shadow: 0 0 14px rgba(112,240,95,.38); }
+
+    .bottom-nav {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 8px;
+      height: 64px;
+      border-radius: 32px;
+      background: rgba(15,15,16,.92);
+      border: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(18px);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      align-items: center;
+      z-index: 65;
+      box-shadow: 0 -4px 24px rgba(0,0,0,.28);
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,255,255,.68);
+    }
+
+    .nav-item .ico { font-size: 21px; line-height: 1; }
+    .nav-item.active {
+      color: white;
+      background: rgba(255,255,255,.12);
+      height: 52px;
+      margin-left: 8px;
+      border-radius: 28px;
+    }
+
+    .notification {
+      position: absolute;
+      top: 54px;
+      left: 50%;
+      width: calc(100% - 28px);
+      transform: translateX(-50%) translateY(-18px);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 120;
+      padding: 12px;
+      border-radius: 22px;
+      background: rgba(31,31,34,.92);
+      backdrop-filter: blur(22px);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 16px 36px rgba(0,0,0,.35);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: .28s ease;
+      cursor: pointer;
+    }
+
+    .notification.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .notif-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex: 0 0 auto;
+    }
+
+    .notif-content { min-width: 0; }
+    .notif-title { font-size: 15px; font-weight: 800; }
+    .notif-text { margin-top: 3px; font-size: 13px; color: rgba(255,255,255,.76); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .chat-screen {
+      position: absolute;
+      inset: 0;
+      z-index: 200;
+      background: #0b0b0d;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform .32s ease;
+    }
+
+    .chat-screen.show { transform: translateX(0); }
+
+    .chat-header {
+      height: 92px;
+      padding: 44px 16px 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(15,15,17,.96);
+    }
+
+    .back-btn {
+      width: 34px;
+      height: 34px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .chat-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .chat-name { font-size: 17px; font-weight: 800; }
+    .chat-status { font-size: 12px; color: #47d16c; font-weight: 700; margin-top: 2px; }
+
+    .messages {
+      flex: 1;
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,70,94,.08), transparent 28%),
+        #0b0b0d;
+    }
+
+    .bubble {
+      max-width: 76%;
+      padding: 11px 14px;
+      border-radius: 19px;
+      font-size: 15px;
+      line-height: 1.28;
+      animation: bubbleIn .28s ease both;
+    }
+
+    .bubble.left {
+      align-self: flex-start;
+      background: #202024;
+      color: white;
+      border-bottom-left-radius: 6px;
+    }
+
+    .bubble.right {
+      align-self: flex-end;
+      background: linear-gradient(135deg, #ff315f, #ff7455);
+      color: white;
+      border-bottom-right-radius: 6px;
+    }
+
+    .chat-photo {
+      align-self: flex-start;
+      width: 190px;
+      border-radius: 18px;
+      display: block;
+      animation: bubbleIn .28s ease both;
+    }
+
+    @keyframes bubbleIn { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+    .composer {
+      padding: 10px 12px 16px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      background: rgba(15,15,17,.98);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .input {
+      flex: 1;
+      min-height: 44px;
+      border-radius: 24px;
+      background: #202024;
+      color: rgba(255,255,255,.56);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .input.filled { color: white; }
+
+    .send-btn {
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff315f, #ff7455);
+      color: white;
+      font-size: 21px;
+      font-weight: 900;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    .empty-state {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: rgba(255,255,255,.72);
+      font-size: 20px;
+      font-weight: 800;
+      text-align: center;
+      padding: 30px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .empty-state.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="statusbar">
+      <div>16:21</div>
+      <div class="status-icons"><span>▮▮▮</span><span>⌁</span><span>61▰</span></div>
+    </div>
+
+    <div class="header-tabs">
+      <div class="filter-icon">☰</div>
+      <div class="tabs">
+        <div class="tab active">For You</div>
+        <div class="tab">Double Date</div>
+        <div class="tab">Astrology</div>
+      </div>
+      <div class="boost-icon">ϟ</div>
+    </div>
+
+    <div class="cards" id="cards"></div>
+    <div class="empty-state" id="emptyState">No more profiles</div>
+
+    <div class="actions">
+      <button class="action-btn nope" id="nopeBtn">×</button>
+      <button class="action-btn like" id="likeBtn">❤</button>
+    </div>
+
+    <div class="bottom-nav">
+      <div class="nav-item active"><div class="ico">🔥</div><div>Swipe</div></div>
+      <div class="nav-item"><div class="ico">◉</div><div>Explore</div></div>
+      <div class="nav-item"><div class="ico">♡</div><div>Likes</div></div>
+      <div class="nav-item"><div class="ico">☏</div><div>Chat</div></div>
+      <div class="nav-item"><div class="ico">♙</div><div>Profile</div></div>
+    </div>
+
+    <div class="notification" id="notification">
+      <img class="notif-avatar" id="notifAvatar" alt="">
+      <div class="notif-content">
+        <div class="notif-title" id="notifTitle"></div>
+        <div class="notif-text">Hi! You're so handsome!)</div>
+      </div>
+    </div>
+
+    <div class="chat-screen" id="chatScreen">
+      <div class="chat-header">
+        <button class="back-btn" id="backBtn">‹</button>
+        <img class="chat-avatar" id="chatAvatar" alt="">
+        <div>
+          <div class="chat-name" id="chatName"></div>
+          <div class="chat-status">Online</div>
+        </div>
+      </div>
+      <div class="messages" id="messages"></div>
+      <div class="composer">
+        <div class="input" id="messageInput">Message...</div>
+        <button class="send-btn" id="sendBtn">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const profiles = [
+      { name: 'Emmy', age: 19, img: 'https://i.pinimg.com/736x/69/77/d4/6977d447436b9c22ab15cc3012663f51.jpg', bio: 'Looking for good energy' },
+      { name: 'Lily', age: 21, img: 'https://i.pinimg.com/736x/a7/1a/77/a71a7776caa4b122863c5b220a053626.jpg', bio: 'Coffee, sunsets and music' },
+      { name: 'Sophie', age: 20, img: 'https://i.pinimg.com/736x/50/95/a2/5095a26ba619e0a1ffc037692965593b.jpg', bio: 'Tell me your best story' },
+      { name: 'Olivia', age: 22, img: 'https://i.pinimg.com/736x/8a/e6/51/8ae6519405fbc37916626448a4288f54.jpg', bio: 'Weekend plans?' }
+    ];
+
+    const replyPhoto = 'https://i.pinimg.com/1200x/9b/c8/71/9bc8717f8ce7c9b3e83d69eafcaa6985.jpg';
+    const cards = document.getElementById('cards');
+    const emptyState = document.getElementById('emptyState');
+    const likeBtn = document.getElementById('likeBtn');
+    const nopeBtn = document.getElementById('nopeBtn');
+    const notification = document.getElementById('notification');
+    const notifAvatar = document.getElementById('notifAvatar');
+    const notifTitle = document.getElementById('notifTitle');
+    const chatScreen = document.getElementById('chatScreen');
+    const chatAvatar = document.getElementById('chatAvatar');
+    const chatName = document.getElementById('chatName');
+    const messages = document.getElementById('messages');
+    const messageInput = document.getElementById('messageInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const backBtn = document.getElementById('backBtn');
+
+    let index = 0;
+    let activeCard = null;
+    let matchedProfile = null;
+    let messageSent = false;
+    let startX = 0;
+    let currentX = 0;
+    let dragging = false;
+
+    function createCard(profile, stackIndex) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.style.zIndex = String(20 - stackIndex);
+      const base = `scale(${1 - stackIndex * 0.035}) translateY(${stackIndex * 10}px)`;
+      card.dataset.base = base;
+      card.style.transform = base;
+      card.innerHTML = `
+        <img src="${profile.img}" alt="${profile.name}">
+        <div class="stamp like">LIKE</div>
+        <div class="stamp nope">NOPE</div>
+        <div class="profile-info">
+          <div class="name-row">${profile.name} ${profile.age}</div>
+          <div class="tagline">${profile.bio}</div>
+          <div class="badge">● Recently active</div>
+        </div>
+      `;
+      return card;
+    }
+
+    function renderStack(animate = false) {
+      cards.innerHTML = '';
+      const visible = profiles.slice(index, index + 3);
+      for (let i = visible.length - 1; i >= 0; i--) {
+        const stackIndex = i;
+        const card = createCard(visible[i], stackIndex);
+        card.style.transition = animate
+          ? 'transform .28s cubic-bezier(.22,.9,.3,1), opacity .24s ease'
+          : 'none';
+        cards.appendChild(card);
+      }
+      activeCard = cards.lastElementChild;
+      emptyState.classList.toggle('show', !activeCard && index >= profiles.length);
+      setupDrag();
+    }
+
+    function setupDrag() {
+      if (!activeCard) return;
+      activeCard.addEventListener('pointerdown', pointerDown);
+      window.addEventListener('pointermove', pointerMove);
+      window.addEventListener('pointerup', pointerUp);
+    }
+
+    function pointerDown(e) {
+      if (!activeCard) return;
+      dragging = true;
+      startX = e.clientX;
+      currentX = 0;
+      activeCard.style.transition = 'none';
+      activeCard.setPointerCapture?.(e.pointerId);
+    }
+
+    function pointerMove(e) {
+      if (!dragging || !activeCard) return;
+      currentX = e.clientX - startX;
+      const rotate = currentX / 18;
+      activeCard.style.transform = `translateX(${currentX}px) rotate(${rotate}deg)`;
+      const amount = Math.min(Math.abs(currentX) / 120, 1);
+      activeCard.querySelector('.stamp.like').style.opacity = currentX > 0 ? amount : 0;
+      activeCard.querySelector('.stamp.nope').style.opacity = currentX < 0 ? amount : 0;
+    }
+
+    function pointerUp() {
+      if (!dragging || !activeCard) return;
+      dragging = false;
+      activeCard.style.transition = 'transform .42s cubic-bezier(.22,.9,.3,1), opacity .32s ease';
+      if (currentX > 95) swipe('right');
+      else if (currentX < -95) swipe('left');
+      else {
+        activeCard.style.transform = activeCard.dataset.base || 'translateX(0) rotate(0deg)';
+        activeCard.querySelector('.stamp.like').style.opacity = 0;
+        activeCard.querySelector('.stamp.nope').style.opacity = 0;
+      }
+    }
+
+    function swipe(direction) {
+      if (!activeCard || index >= profiles.length) return;
+      const profile = profiles[index];
+      const liked = direction === 'right';
+      activeCard.style.transition = 'transform .55s cubic-bezier(.16,.84,.28,1), opacity .38s ease';
+      activeCard.style.transform = liked
+        ? `translateX(${window.innerWidth * 1.35}px) translateY(-26px) rotate(28deg)`
+        : `translateX(${-window.innerWidth * 1.35}px) translateY(-26px) rotate(-28deg)`;
+      activeCard.style.opacity = '0';
+
+      setTimeout(() => {
+        index += 1;
+        renderStack(true);
+        if (liked) {
+          matchedProfile = profile;
+          showNotification(profile);
+        }
+      }, 340);
+    }
+
+    function showNotification(profile) {
+      notifAvatar.src = profile.img;
+      notifTitle.textContent = `${profile.name} sent you a message`;
+      notification.classList.add('show');
+    }
+
+    function openChat() {
+      if (!matchedProfile) return;
+      notification.classList.remove('show');
+      chatAvatar.src = matchedProfile.img;
+      chatName.textContent = matchedProfile.name;
+      messages.innerHTML = '';
+      messageInput.textContent = 'Message...';
+      messageInput.classList.remove('filled');
+      messageSent = false;
+      chatScreen.classList.add('show');
+      setTimeout(() => addMessage("Hi! You're so handsome!)", 'left'), 250);
+    }
+
+    function addMessage(text, side) {
+      const bubble = document.createElement('div');
+      bubble.className = `bubble ${side}`;
+      bubble.textContent = text;
+      messages.appendChild(bubble);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function addPhoto() {
+      const img = document.createElement('img');
+      img.className = 'chat-photo';
+      img.src = replyPhoto;
+      messages.appendChild(img);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    likeBtn.addEventListener('click', () => swipe('right'));
+    nopeBtn.addEventListener('click', () => swipe('left'));
+    notification.addEventListener('click', openChat);
+
+    messageInput.addEventListener('click', () => {
+      if (messageSent) return;
+      messageInput.textContent = 'You too! Wanna meet?';
+      messageInput.classList.add('filled');
+    });
+
+    sendBtn.addEventListener('click', () => {
+      if (messageSent || !messageInput.classList.contains('filled')) return;
+      messageSent = true;
+      addMessage('You too! Wanna meet?', 'right');
+      messageInput.textContent = 'Message...';
+      messageInput.classList.remove('filled');
+      setTimeout(() => addMessage('Sure', 'left'), 650);
+      setTimeout(addPhoto, 1050);
+    });
+
+    backBtn.addEventListener('click', () => chatScreen.classList.remove('show'));
+
+    renderStack(false);
+  </script>
+</body>
+</html>

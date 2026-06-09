@@ -824,40 +824,48 @@
     messages.scrollTop = messages.scrollHeight;
   }
 
-  function addChatVideo() {
+ function addChatVideo() {
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = 'align-self:flex-start; animation: bubbleIn .28s cubic-bezier(.34,1.56,.64,1) both;';
+
     const video = document.createElement('video');
     video.className = 'chat-video';
     video.src = CHAT_VIDEO;
-    video.autoplay = true;
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
     video.setAttribute('webkit-playsinline', '');
-    messages.appendChild(video);
+    video.setAttribute('playsinline', '');
+    video.autoplay = true;
+    video.controls = false;
+    video.preload = 'auto';
+
+    // Несколько попыток запустить
+    video.addEventListener('loadeddata', () => {
+      video.play().catch(() => {
+        // Если autoplay заблокирован — показываем poster и кнопку play
+        video.controls = true;
+      });
+    });
+
+    video.addEventListener('canplay', () => {
+      video.play().catch(() => {
+        video.controls = true;
+      });
+    });
+
+    // Сразу пробуем
+    video.load();
+    setTimeout(() => {
+      video.play().catch(() => {
+        video.controls = true;
+      });
+    }, 100);
+
+    wrapper.appendChild(video);
+    messages.appendChild(wrapper);
     messages.scrollTop = messages.scrollHeight;
-    // Try to play
-    video.play().catch(() => {});
-  }
-
-  likeBtn.addEventListener('click', () => swipe('right'));
-  nopeBtn.addEventListener('click', () => swipe('left'));
-  notification.addEventListener('click', openChat);
-
-  messageInput.addEventListener('click', () => {
-    if (messageSent) return;
-    messageInput.textContent = 'You too! Wanna meet? 😊';
-    messageInput.classList.add('filled');
-  });
-
-  sendBtn.addEventListener('click', () => {
-    if (messageSent || !messageInput.classList.contains('filled')) return;
-    messageSent = true;
-    addMessage('You too! Wanna meet? 😊', 'right');
-    messageInput.textContent = 'Message...';
-    messageInput.classList.remove('filled');
-    setTimeout(() => addMessage('Sure! 😏', 'left'), 700);
-    setTimeout(addChatVideo, 1200);
-  });
+}
 
   backBtn.addEventListener('click', () => chatScreen.classList.remove('show'));
 

@@ -41,17 +41,11 @@
       font-weight: 700;
       pointer-events: none;
     }
-    .status-icons {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-    }
+    .status-icons { display: flex; align-items: center; gap: 8px; font-size: 14px; }
 
     .header-tabs {
       position: absolute;
-      top: 52px;
-      left: 0; right: 0;
+      top: 52px; left: 0; right: 0;
       height: 52px;
       padding: 0 16px;
       display: flex;
@@ -62,8 +56,7 @@
 
     .filter-icon {
       width: 42px; height: 42px;
-      display: grid;
-      place-items: center;
+      display: grid; place-items: center;
       font-size: 22px;
       color: rgba(255,255,255,.85);
       background: rgba(255,255,255,0.08);
@@ -76,10 +69,8 @@
 
     .boost-icon {
       width: 42px; height: 42px;
-      display: grid;
-      place-items: center;
-      font-size: 22px;
-      color: #d06ef7;
+      display: grid; place-items: center;
+      font-size: 22px; color: #d06ef7;
       background: rgba(208,110,247,0.12);
       border-radius: 50%;
       border: 1px solid rgba(208,110,247,0.25);
@@ -89,243 +80,136 @@
       cursor: pointer;
     }
 
-    .tabs {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+    .tabs { display: flex; align-items: center; gap: 6px; }
     .tab {
-      padding: 9px 15px;
-      border-radius: 999px;
-      font-size: 15px;
-      font-weight: 700;
+      padding: 9px 15px; border-radius: 999px;
+      font-size: 15px; font-weight: 700;
       color: rgba(255,255,255,.75);
       background: rgba(255,255,255,0.07);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,0.08);
-      white-space: nowrap;
-      cursor: pointer;
-      transition: all 0.2s ease;
+      white-space: nowrap; cursor: pointer;
     }
     .tab.active {
-      background: rgba(255,255,255,0.14);
-      color: #fff;
+      background: rgba(255,255,255,0.14); color: #fff;
       border-color: rgba(255,255,255,0.18);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
     }
 
-    .cards {
-      position: absolute;
-      inset: 0;
-      z-index: 10;
-    }
+    .cards { position: absolute; inset: 0; z-index: 10; }
 
     .card {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      touch-action: none;
-      cursor: grab;
+      position: absolute; inset: 0;
+      overflow: hidden; touch-action: none; cursor: grab;
       transform-origin: center bottom;
-      background: #111;
-      will-change: transform, opacity;
+      background: #111; will-change: transform, opacity;
     }
-
     .card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      user-select: none;
-      pointer-events: none;
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; user-select: none; pointer-events: none;
     }
-
     .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
+      content: ""; position: absolute; inset: 0;
       background:
         linear-gradient(180deg, rgba(0,0,0,.5) 0%, transparent 22%),
         linear-gradient(0deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.4) 22%, transparent 50%);
-      pointer-events: none;
-      z-index: 1;
+      pointer-events: none; z-index: 1;
     }
 
     .profile-info {
-      position: absolute;
-      left: 22px;
-      right: 22px;
-      bottom: 175px;
-      z-index: 2;
-      pointer-events: none;
+      position: absolute; left: 22px; right: 22px; bottom: 175px;
+      z-index: 2; pointer-events: none;
     }
-
-    .name-row {
-      font-size: 40px;
-      line-height: 1;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      text-shadow: 0 3px 18px rgba(0,0,0,.6);
-    }
-
-    .tagline {
-      margin-top: 8px;
-      font-size: 16px;
-      font-weight: 500;
-      opacity: .88;
-      text-shadow: 0 2px 10px rgba(0,0,0,.5);
-    }
-
+    .name-row { font-size: 40px; line-height: 1; font-weight: 800; letter-spacing: -0.04em; text-shadow: 0 3px 18px rgba(0,0,0,.6); }
+    .tagline { margin-top: 8px; font-size: 16px; font-weight: 500; opacity: .88; }
     .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 12px;
-      padding: 7px 13px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.13);
-      backdrop-filter: blur(12px);
+      display: inline-flex; align-items: center; gap: 5px;
+      margin-top: 12px; padding: 7px 13px; border-radius: 999px;
+      background: rgba(255,255,255,.13); backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,0.15);
-      font-size: 13px;
-      font-weight: 700;
+      font-size: 13px; font-weight: 700;
     }
     .badge-dot {
-      width: 7px; height: 7px;
-      background: #4ade80;
-      border-radius: 50%;
-      box-shadow: 0 0 6px rgba(74,222,128,0.7);
+      width: 7px; height: 7px; background: #4ade80;
+      border-radius: 50%; box-shadow: 0 0 6px rgba(74,222,128,0.7);
     }
 
     .stamp {
-      position: absolute;
-      top: 140px;
-      z-index: 4;
-      padding: 8px 18px;
-      border: 3.5px solid currentColor;
-      border-radius: 10px;
-      font-size: 32px;
-      font-weight: 900;
-      letter-spacing: .04em;
-      opacity: 0;
-      pointer-events: none;
-      text-transform: uppercase;
+      position: absolute; top: 140px; z-index: 4;
+      padding: 8px 18px; border: 3.5px solid currentColor;
+      border-radius: 10px; font-size: 32px; font-weight: 900;
+      opacity: 0; pointer-events: none; text-transform: uppercase;
     }
     .stamp.like { left: 24px; color: #4ade80; transform: rotate(-16deg); }
     .stamp.nope { right: 24px; color: #ff3b5c; transform: rotate(16deg); }
 
     .actions {
-      position: absolute;
-      left: 0; right: 0;
-      bottom: 86px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 28px;
-      z-index: 60;
+      position: absolute; left: 0; right: 0; bottom: 86px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 28px; z-index: 60;
     }
-
     .action-btn {
-      position: relative;
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      border: none;
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      transition: transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s ease;
+      position: relative; width: 72px; height: 72px;
+      border-radius: 50%; border: none;
+      display: grid; place-items: center; cursor: pointer;
+      transition: transform .18s cubic-bezier(.34,1.56,.64,1);
     }
     .action-btn::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,0.12);
+      content: ""; position: absolute; inset: 0;
+      border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.12);
       pointer-events: none;
     }
     .action-btn.nope {
       background: linear-gradient(145deg, #1a1a1f, #111116);
-      box-shadow: 0 8px 28px rgba(255,59,92,0.3), 0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+      box-shadow: 0 8px 28px rgba(255,59,92,0.3), 0 4px 12px rgba(0,0,0,0.4);
     }
-    .action-btn.nope .btn-icon {
-      font-size: 32px;
-      color: #ff3b5c;
-      filter: drop-shadow(0 0 8px rgba(255,59,92,0.6));
-      line-height: 1;
-    }
+    .action-btn.nope .btn-icon { font-size: 32px; color: #ff3b5c; filter: drop-shadow(0 0 8px rgba(255,59,92,0.6)); line-height: 1; }
     .action-btn.like {
       background: linear-gradient(145deg, #ff3b5c, #ff6b35);
-      box-shadow: 0 8px 28px rgba(255,59,92,0.45), 0 4px 12px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.2);
+      box-shadow: 0 8px 28px rgba(255,59,92,0.45), 0 4px 12px rgba(0,0,0,0.35);
     }
-    .action-btn.like .btn-icon {
-      font-size: 30px;
-      color: #fff;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-      line-height: 1;
-    }
+    .action-btn.like .btn-icon { font-size: 30px; color: #fff; line-height: 1; }
     .action-btn:active { transform: scale(.9); }
 
     .bottom-nav {
-      position: absolute;
-      left: 10px; right: 10px;
-      bottom: 6px;
-      height: 68px;
-      border-radius: 34px;
+      position: absolute; left: 10px; right: 10px; bottom: 6px;
+      height: 68px; border-radius: 34px;
       background: rgba(12,12,14,.96);
       border: 1px solid rgba(255,255,255,.07);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      align-items: center;
-      z-index: 65;
-      box-shadow: 0 -4px 28px rgba(0,0,0,.35);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      align-items: center; z-index: 65;
     }
-
     .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 3px;
-      font-size: 10px;
-      font-weight: 700;
-      color: rgba(255,255,255,.45);
-      letter-spacing: 0.3px;
-      cursor: pointer;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 3px; font-size: 10px; font-weight: 700;
+      color: rgba(255,255,255,.45); cursor: pointer;
     }
     .nav-item .ico { font-size: 20px; line-height: 1; }
     .nav-item.active {
       color: white;
       background: linear-gradient(135deg, rgba(255,59,92,0.22), rgba(255,107,53,0.15));
-      height: 54px;
-      margin-left: 6px;
-      border-radius: 28px;
+      height: 54px; margin-left: 6px; border-radius: 28px;
       border: 1px solid rgba(255,59,92,0.25);
     }
 
     .notification {
       position: absolute;
-      top: 56px;
-      left: 50%;
+      top: 56px; left: 50%;
       width: calc(100% - 24px);
       transform: translateX(-50%) translateY(-20px);
       opacity: 0;
       pointer-events: none;
-      z-index: 120;
-      padding: 13px 14px;
-      border-radius: 22px;
+      z-index: 999;
+      padding: 13px 14px; border-radius: 22px;
       background: rgba(18,18,22,.95);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(255,255,255,.1);
-      box-shadow: 0 20px 50px rgba(0,0,0,.5), 0 0 0 1px rgba(255,59,92,0.15);
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.5);
+      display: flex; align-items: center; gap: 12px;
       transition: .3s cubic-bezier(.34,1.56,.64,1);
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
     }
     .notification.show {
       opacity: 1;
@@ -333,141 +217,94 @@
       transform: translateX(-50%) translateY(0);
     }
     .notif-avatar {
-      width: 46px; height: 46px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex: 0 0 auto;
+      width: 46px; height: 46px; border-radius: 50%;
+      object-fit: cover; flex: 0 0 auto;
       border: 2px solid rgba(255,59,92,0.4);
     }
     .notif-content { min-width: 0; flex: 1; }
     .notif-title { font-size: 14px; font-weight: 800; }
     .notif-text {
-      margin-top: 2px;
-      font-size: 12px;
-      color: rgba(255,255,255,.7);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      margin-top: 2px; font-size: 12px; color: rgba(255,255,255,.7);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     .notif-badge {
       width: 10px; height: 10px;
       background: linear-gradient(135deg, #ff3b5c, #ff6b35);
-      border-radius: 50%;
-      flex-shrink: 0;
+      border-radius: 50%; flex-shrink: 0;
       box-shadow: 0 0 8px rgba(255,59,92,0.6);
     }
 
     .chat-screen {
-      position: absolute;
-      inset: 0;
-      z-index: 200;
-      background: #0a0a0c;
-      display: flex;
-      flex-direction: column;
+      position: absolute; inset: 0; z-index: 200;
+      background: #0a0a0c; display: flex; flex-direction: column;
       transform: translateX(100%);
       transition: transform .32s cubic-bezier(.4,0,.2,1);
     }
     .chat-screen.show { transform: translateX(0); }
 
     .chat-header {
-      height: 96px;
-      padding: 48px 16px 12px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      height: 96px; padding: 48px 16px 12px;
+      display: flex; align-items: center; gap: 12px;
       background: rgba(12,12,14,.98);
       border-bottom: 1px solid rgba(255,255,255,.07);
       flex-shrink: 0;
     }
-
     .back-btn {
-      width: 36px; height: 36px;
-      border: none;
-      border-radius: 50%;
+      width: 36px; height: 36px; border: none; border-radius: 50%;
       background: rgba(255,255,255,.08);
       border: 1px solid rgba(255,255,255,0.1);
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
-      display: grid;
-      place-items: center;
-      transition: all 0.2s ease;
+      color: white; font-size: 20px; cursor: pointer;
+      display: grid; place-items: center;
     }
-    .back-btn:active { transform: scale(0.9); }
-
+    .back-btn:active { background: rgba(255,255,255,0.15); }
     .chat-avatar {
-      width: 42px; height: 42px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid rgba(255,59,92,0.5);
+      width: 42px; height: 42px; border-radius: 50%;
+      object-fit: cover; border: 2px solid rgba(255,59,92,0.5);
     }
-
     .chat-name { font-size: 17px; font-weight: 800; }
     .chat-status {
-      font-size: 12px;
-      font-weight: 700;
-      margin-top: 2px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      color: #4ade80;
+      font-size: 12px; font-weight: 700; margin-top: 2px;
+      display: flex; align-items: center; gap: 5px; color: #4ade80;
     }
     .chat-status::before {
-      content: "";
-      width: 7px; height: 7px;
-      background: #4ade80;
-      border-radius: 50%;
-      box-shadow: 0 0 6px rgba(74,222,128,0.7);
+      content: ""; width: 7px; height: 7px; background: #4ade80;
+      border-radius: 50%; box-shadow: 0 0 6px rgba(74,222,128,0.7);
       display: inline-block;
     }
 
     .messages {
-      flex: 1;
-      padding: 18px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      flex: 1; padding: 18px 14px;
+      display: flex; flex-direction: column; gap: 10px;
       overflow-y: auto;
-      background:
-        radial-gradient(ellipse at 50% 0%, rgba(255,59,92,.07) 0%, transparent 60%),
-        #0a0a0c;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,59,92,.07) 0%, transparent 60%), #0a0a0c;
     }
     .messages::-webkit-scrollbar { display: none; }
 
     .bubble {
-      max-width: 76%;
-      padding: 11px 15px;
-      border-radius: 20px;
-      font-size: 15px;
-      line-height: 1.35;
+      max-width: 76%; padding: 11px 15px; border-radius: 20px;
+      font-size: 15px; line-height: 1.35;
       animation: bubbleIn .28s cubic-bezier(.34,1.56,.64,1) both;
     }
     .bubble.left {
-      align-self: flex-start;
-      background: #1e1e24;
-      color: white;
-      border-bottom-left-radius: 6px;
-      border: 1px solid rgba(255,255,255,0.06);
+      align-self: flex-start; background: #1e1e24; color: white;
+      border-bottom-left-radius: 6px; border: 1px solid rgba(255,255,255,0.06);
     }
     .bubble.right {
       align-self: flex-end;
       background: linear-gradient(135deg, #ff3b5c, #ff6b35);
-      color: white;
-      border-bottom-right-radius: 6px;
+      color: white; border-bottom-right-radius: 6px;
       box-shadow: 0 4px 16px rgba(255,59,92,0.35);
     }
 
     .chat-video {
       align-self: flex-start;
-      width: 190px;
-      height: 190px;
-      border-radius: 18px;
+      width: 190px; height: 190px; border-radius: 18px;
       object-fit: cover;
       animation: bubbleIn .28s cubic-bezier(.34,1.56,.64,1) both;
       border: 1px solid rgba(255,255,255,0.08);
       box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-      background: #1e1e24;
-      display: block;
+      background: #1e1e24; display: block;
+      pointer-events: none;
     }
 
     @keyframes bubbleIn {
@@ -476,62 +313,31 @@
     }
 
     .composer {
-      padding: 10px 12px 18px;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      background: rgba(12,12,14,.98);
-      border-top: 1px solid rgba(255,255,255,.07);
-      flex-shrink: 0;
+      padding: 10px 12px 18px; display: flex; gap: 10px;
+      align-items: center; background: rgba(12,12,14,.98);
+      border-top: 1px solid rgba(255,255,255,.07); flex-shrink: 0;
     }
-
     .input {
-      flex: 1;
-      min-height: 44px;
-      border-radius: 24px;
-      background: #1a1a20;
-      border: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,.5);
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      font-size: 15px;
-      cursor: pointer;
-      transition: all 0.2s ease;
+      flex: 1; min-height: 44px; border-radius: 24px;
+      background: #1a1a20; border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,.5); display: flex; align-items: center;
+      padding: 0 16px; font-size: 15px; cursor: pointer;
     }
-    .input.filled {
-      color: white;
-      border-color: rgba(255,59,92,0.3);
-    }
-
+    .input.filled { color: white; border-color: rgba(255,59,92,0.3); }
     .send-btn {
-      width: 44px; height: 44px;
-      border: none;
-      border-radius: 50%;
+      width: 44px; height: 44px; border: none; border-radius: 50%;
       background: linear-gradient(135deg, #ff3b5c, #ff6b35);
-      color: white;
-      font-size: 18px;
-      cursor: pointer;
-      display: grid;
-      place-items: center;
+      color: white; font-size: 18px; cursor: pointer;
+      display: grid; place-items: center;
       box-shadow: 0 4px 16px rgba(255,59,92,0.45);
-      transition: all 0.2s ease;
     }
     .send-btn:active { transform: scale(0.9); }
 
     .empty-state {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      color: rgba(255,255,255,.5);
-      font-size: 18px;
-      font-weight: 800;
-      text-align: center;
-      padding: 30px;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 5;
+      position: absolute; inset: 0; display: grid; place-items: center;
+      color: rgba(255,255,255,.5); font-size: 18px; font-weight: 800;
+      text-align: center; padding: 30px;
+      opacity: 0; pointer-events: none; z-index: 5;
     }
     .empty-state.show { opacity: 1; }
     .empty-emoji { font-size: 52px; margin-bottom: 16px; }
@@ -616,36 +422,36 @@
     { name: 'Olivia', age: 22, img: 'assets/photos/girl4.jpg', bio: 'Weekend plans? 🌊' }
   ];
 
-  // Видео которое девушка скидывает в чате
-  const CHAT_VIDEO = 'assets/chat-video.mp4';
+  // Видео которое девушка скидывает в чате — поменяй MP4 на mp4 если переименуешь
+  const CHAT_VIDEO = 'assets/chat-video.MP4';
 
   // ============================================
   // LOGIC
   // ============================================
 
-  const cards       = document.getElementById('cards');
-  const emptyState  = document.getElementById('emptyState');
-  const likeBtn     = document.getElementById('likeBtn');
-  const nopeBtn     = document.getElementById('nopeBtn');
-  const notification= document.getElementById('notification');
-  const notifAvatar = document.getElementById('notifAvatar');
-  const notifTitle  = document.getElementById('notifTitle');
-  const chatScreen  = document.getElementById('chatScreen');
-  const chatAvatar  = document.getElementById('chatAvatar');
-  const chatName    = document.getElementById('chatName');
-  const messages    = document.getElementById('messages');
-  const messageInput= document.getElementById('messageInput');
-  const sendBtn     = document.getElementById('sendBtn');
-  const backBtn     = document.getElementById('backBtn');
+  const cards        = document.getElementById('cards');
+  const emptyState   = document.getElementById('emptyState');
+  const likeBtn      = document.getElementById('likeBtn');
+  const nopeBtn      = document.getElementById('nopeBtn');
+  const notification = document.getElementById('notification');
+  const notifAvatar  = document.getElementById('notifAvatar');
+  const notifTitle   = document.getElementById('notifTitle');
+  const chatScreen   = document.getElementById('chatScreen');
+  const chatAvatar   = document.getElementById('chatAvatar');
+  const chatName     = document.getElementById('chatName');
+  const messages     = document.getElementById('messages');
+  const messageInput = document.getElementById('messageInput');
+  const sendBtn      = document.getElementById('sendBtn');
+  const backBtn      = document.getElementById('backBtn');
 
-  let index = 0;
-  let activeCard = null;
+  let index          = 0;
+  let activeCard     = null;
   let matchedProfile = null;
-  let messageSent = false;
-  let startX = 0;
-  let currentX = 0;
-  let dragging = false;
-  let notifTimer = null;
+  let messageSent    = false;
+  let startX         = 0;
+  let currentX       = 0;
+  let dragging       = false;
+  let notifTimer     = null;
 
   // ---- Cards ----
 
@@ -658,8 +464,7 @@
     card.style.transform = base;
     card.style.transition = 'none';
     card.innerHTML = `
-      <img src="${profile.img}" alt="${profile.name}"
-           onerror="this.style.opacity='0'">
+      <img src="${profile.img}" alt="${profile.name}" onerror="this.style.opacity='0'">
       <div class="stamp like">LIKE</div>
       <div class="stamp nope">NOPE</div>
       <div class="profile-info">
@@ -676,9 +481,7 @@
     const visible = profiles.slice(index, index + 3);
     for (let i = visible.length - 1; i >= 0; i--) {
       const card = createCard(visible[i], i);
-      if (animate) {
-        card.style.transition = 'transform .28s cubic-bezier(.22,.9,.3,1), opacity .24s ease';
-      }
+      if (animate) card.style.transition = 'transform .28s cubic-bezier(.22,.9,.3,1), opacity .24s ease';
       cards.appendChild(card);
     }
     activeCard = cards.lastElementChild;
@@ -737,10 +540,7 @@
     setTimeout(() => {
       index++;
       renderStack(true);
-      if (liked) {
-        matchedProfile = profile;
-        showNotification(profile);
-      }
+      if (liked) { matchedProfile = profile; showNotification(profile); }
     }, 340);
   }
 
@@ -751,9 +551,7 @@
     notifTitle.textContent = `${profile.name} sent you a message 💌`;
     notification.classList.add('show');
     clearTimeout(notifTimer);
-    notifTimer = setTimeout(() => {
-      notification.classList.remove('show');
-    }, 5000);
+    notifTimer = setTimeout(() => notification.classList.remove('show'), 5000);
   }
 
   // ---- Chat ----
@@ -791,27 +589,29 @@
     video.setAttribute('webkit-playsinline', '');
     video.autoplay = true;
     video.preload = 'auto';
-
-    video.addEventListener('canplay', () => {
-      video.play().catch(() => { video.controls = true; });
-    });
+    video.controls = false;
+    video.style.pointerEvents = 'none';
 
     messages.appendChild(video);
     messages.scrollTop = messages.scrollHeight;
 
+    const tryPlay = () => video.play().catch(() => {});
+    video.addEventListener('loadedmetadata', tryPlay);
+    video.addEventListener('canplay', tryPlay);
     video.load();
-    setTimeout(() => {
-      video.play().catch(() => { video.controls = true; });
-    }, 200);
+    setTimeout(tryPlay, 300);
+    setTimeout(tryPlay, 800);
   }
 
   // ---- Events ----
 
+  // Кнопка уведомления — click + touchend для iOS
   notification.addEventListener('click', openChat);
-notification.addEventListener('touchend', function(e) {
-  e.preventDefault();
-  openChat();
-});
+  notification.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    openChat();
+  });
 
   likeBtn.addEventListener('click', () => swipe('right'));
   nopeBtn.addEventListener('click', () => swipe('left'));
@@ -832,7 +632,9 @@ notification.addEventListener('touchend', function(e) {
     setTimeout(addChatVideo, 1200);
   });
 
-  backBtn.addEventListener('click', () => {
+  backBtn.addEventListener('click', () => chatScreen.classList.remove('show'));
+  backBtn.addEventListener('touchend', function(e) {
+    e.preventDefault();
     chatScreen.classList.remove('show');
   });
 

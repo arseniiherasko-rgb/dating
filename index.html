@@ -28,7 +28,6 @@
       background: #080808;
     }
 
-    /* Status bar */
     .statusbar {
       position: absolute;
       top: 0; left: 0; right: 0;
@@ -49,7 +48,6 @@
       font-size: 14px;
     }
 
-    /* Header */
     .header-tabs {
       position: absolute;
       top: 52px;
@@ -82,9 +80,9 @@
       place-items: center;
       font-size: 22px;
       color: #d06ef7;
-      background: rgba(208, 110, 247, 0.12);
+      background: rgba(208,110,247,0.12);
       border-radius: 50%;
-      border: 1px solid rgba(208, 110, 247, 0.25);
+      border: 1px solid rgba(208,110,247,0.25);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       filter: drop-shadow(0 0 10px rgba(208,110,247,.35));
@@ -117,7 +115,6 @@
       box-shadow: 0 4px 16px rgba(0,0,0,0.25);
     }
 
-    /* Cards */
     .cards {
       position: absolute;
       inset: 0;
@@ -131,10 +128,8 @@
       touch-action: none;
       cursor: grab;
       transform-origin: center bottom;
-      transition: transform .42s cubic-bezier(.22,.9,.3,1), opacity .32s ease;
       background: #111;
       will-change: transform, opacity;
-      border-radius: 0;
     }
 
     .card img {
@@ -146,7 +141,6 @@
       pointer-events: none;
     }
 
-    /* Gradient overlay */
     .card::before {
       content: "";
       position: absolute;
@@ -204,7 +198,6 @@
       box-shadow: 0 0 6px rgba(74,222,128,0.7);
     }
 
-    /* Stamps */
     .stamp {
       position: absolute;
       top: 140px;
@@ -222,7 +215,6 @@
     .stamp.like { left: 24px; color: #4ade80; transform: rotate(-16deg); }
     .stamp.nope { right: 24px; color: #ff3b5c; transform: rotate(16deg); }
 
-    /* Action buttons */
     .actions {
       position: absolute;
       left: 0; right: 0;
@@ -236,15 +228,13 @@
 
     .action-btn {
       position: relative;
-      width: 72px;
-      height: 72px;
+      width: 72px; height: 72px;
       border-radius: 50%;
       border: none;
       display: grid;
       place-items: center;
       cursor: pointer;
       transition: transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s ease;
-      overflow: hidden;
     }
     .action-btn::before {
       content: "";
@@ -254,13 +244,9 @@
       border: 1.5px solid rgba(255,255,255,0.12);
       pointer-events: none;
     }
-
     .action-btn.nope {
       background: linear-gradient(145deg, #1a1a1f, #111116);
-      box-shadow:
-        0 8px 28px rgba(255,59,92,0.3),
-        0 4px 12px rgba(0,0,0,0.4),
-        inset 0 1px 0 rgba(255,255,255,0.06);
+      box-shadow: 0 8px 28px rgba(255,59,92,0.3), 0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
     }
     .action-btn.nope .btn-icon {
       font-size: 32px;
@@ -268,13 +254,9 @@
       filter: drop-shadow(0 0 8px rgba(255,59,92,0.6));
       line-height: 1;
     }
-
     .action-btn.like {
       background: linear-gradient(145deg, #ff3b5c, #ff6b35);
-      box-shadow:
-        0 8px 28px rgba(255,59,92,0.45),
-        0 4px 12px rgba(0,0,0,0.35),
-        inset 0 1px 0 rgba(255,255,255,0.2);
+      box-shadow: 0 8px 28px rgba(255,59,92,0.45), 0 4px 12px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.2);
     }
     .action-btn.like .btn-icon {
       font-size: 30px;
@@ -282,16 +264,8 @@
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
       line-height: 1;
     }
-
     .action-btn:active { transform: scale(.9); }
-    .action-btn.nope:active {
-      box-shadow: 0 4px 14px rgba(255,59,92,0.25), 0 2px 6px rgba(0,0,0,0.4);
-    }
-    .action-btn.like:active {
-      box-shadow: 0 4px 14px rgba(255,59,92,0.35), 0 2px 6px rgba(0,0,0,0.35);
-    }
 
-    /* Bottom nav */
     .bottom-nav {
       position: absolute;
       left: 10px; right: 10px;
@@ -306,7 +280,7 @@
       grid-template-columns: repeat(5, 1fr);
       align-items: center;
       z-index: 65;
-      box-shadow: 0 -4px 28px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.03);
+      box-shadow: 0 -4px 28px rgba(0,0,0,.35);
     }
 
     .nav-item {
@@ -320,7 +294,6 @@
       color: rgba(255,255,255,.45);
       letter-spacing: 0.3px;
       cursor: pointer;
-      transition: all 0.2s ease;
     }
     .nav-item .ico { font-size: 20px; line-height: 1; }
     .nav-item.active {
@@ -332,7 +305,6 @@
       border: 1px solid rgba(255,59,92,0.25);
     }
 
-    /* Notification */
     .notification {
       position: absolute;
       top: 56px;
@@ -385,7 +357,6 @@
       box-shadow: 0 0 8px rgba(255,59,92,0.6);
     }
 
-    /* Chat screen */
     .chat-screen {
       position: absolute;
       inset: 0;
@@ -406,6 +377,7 @@
       gap: 12px;
       background: rgba(12,12,14,.98);
       border-bottom: 1px solid rgba(255,255,255,.07);
+      flex-shrink: 0;
     }
 
     .back-btn {
@@ -421,7 +393,7 @@
       place-items: center;
       transition: all 0.2s ease;
     }
-    .back-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.15); }
+    .back-btn:active { transform: scale(0.9); }
 
     .chat-avatar {
       width: 42px; height: 42px;
@@ -485,19 +457,17 @@
       box-shadow: 0 4px 16px rgba(255,59,92,0.35);
     }
 
-    /* Video in chat */
     .chat-video {
       align-self: flex-start;
       width: 190px;
       height: 190px;
       border-radius: 18px;
-      display: block;
       object-fit: cover;
       animation: bubbleIn .28s cubic-bezier(.34,1.56,.64,1) both;
       border: 1px solid rgba(255,255,255,0.08);
       box-shadow: 0 8px 24px rgba(0,0,0,0.4);
       background: #1e1e24;
-      cursor: pointer;
+      display: block;
     }
 
     @keyframes bubbleIn {
@@ -505,7 +475,6 @@
       to   { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* Composer */
     .composer {
       padding: 10px 12px 18px;
       display: flex;
@@ -513,6 +482,7 @@
       align-items: center;
       background: rgba(12,12,14,.98);
       border-top: 1px solid rgba(255,255,255,.07);
+      flex-shrink: 0;
     }
 
     .input {
@@ -549,7 +519,6 @@
     }
     .send-btn:active { transform: scale(0.9); }
 
-    /* Empty state */
     .empty-state {
       position: absolute;
       inset: 0;
@@ -637,53 +606,37 @@
 
 <script>
   // ============================================
-  // CONFIG — меняй здесь фото и видео
+  // CONFIG
   // ============================================
 
   const profiles = [
-    {
-      name: 'Emmy', age: 19,
-      img: 'assets/photos/girl1.jpg',
-      bio: 'Looking for good energy ✨'
-    },
-    {
-      name: 'Lily', age: 21,
-      img: 'assets/photos/girl2.jpg',
-      bio: 'Coffee, sunsets and music 🎵'
-    },
-    {
-      name: 'Sophie', age: 20,
-      img: 'assets/photos/girl3.jpg',
-      bio: 'Tell me your best story 📖'
-    },
-    {
-      name: 'Olivia', age: 22,
-      img: 'assets/photos/girl4.jpg',
-      bio: 'Weekend plans? 🌊'
-    }
+    { name: 'Emmy',   age: 19, img: 'assets/photos/girl1.jpg', bio: 'Looking for good energy ✨' },
+    { name: 'Lily',   age: 21, img: 'assets/photos/girl2.jpg', bio: 'Coffee, sunsets and music 🎵' },
+    { name: 'Sophie', age: 20, img: 'assets/photos/girl3.jpg', bio: 'Tell me your best story 📖' },
+    { name: 'Olivia', age: 22, img: 'assets/photos/girl4.jpg', bio: 'Weekend plans? 🌊' }
   ];
 
-  // Видео которое девушка "скидывает" в чате
-  const CHAT_VIDEO = 'assets/chat-video.MP4';
+  // Видео которое девушка скидывает в чате
+  const CHAT_VIDEO = 'assets/chat-video.mp4';
 
   // ============================================
   // LOGIC
   // ============================================
 
-  const cards = document.getElementById('cards');
-  const emptyState = document.getElementById('emptyState');
-  const likeBtn = document.getElementById('likeBtn');
-  const nopeBtn = document.getElementById('nopeBtn');
-  const notification = document.getElementById('notification');
+  const cards       = document.getElementById('cards');
+  const emptyState  = document.getElementById('emptyState');
+  const likeBtn     = document.getElementById('likeBtn');
+  const nopeBtn     = document.getElementById('nopeBtn');
+  const notification= document.getElementById('notification');
   const notifAvatar = document.getElementById('notifAvatar');
-  const notifTitle = document.getElementById('notifTitle');
-  const chatScreen = document.getElementById('chatScreen');
-  const chatAvatar = document.getElementById('chatAvatar');
-  const chatName = document.getElementById('chatName');
-  const messages = document.getElementById('messages');
-  const messageInput = document.getElementById('messageInput');
-  const sendBtn = document.getElementById('sendBtn');
-  const backBtn = document.getElementById('backBtn');
+  const notifTitle  = document.getElementById('notifTitle');
+  const chatScreen  = document.getElementById('chatScreen');
+  const chatAvatar  = document.getElementById('chatAvatar');
+  const chatName    = document.getElementById('chatName');
+  const messages    = document.getElementById('messages');
+  const messageInput= document.getElementById('messageInput');
+  const sendBtn     = document.getElementById('sendBtn');
+  const backBtn     = document.getElementById('backBtn');
 
   let index = 0;
   let activeCard = null;
@@ -692,19 +645,21 @@
   let startX = 0;
   let currentX = 0;
   let dragging = false;
+  let notifTimer = null;
+
+  // ---- Cards ----
 
   function createCard(profile, stackIndex) {
     const card = document.createElement('div');
     card.className = 'card';
     card.style.zIndex = String(20 - stackIndex);
-    const scale = 1 - stackIndex * 0.035;
-    const translateY = stackIndex * 10;
-    const base = `scale(${scale}) translateY(${translateY}px)`;
+    const base = `scale(${1 - stackIndex * 0.035}) translateY(${stackIndex * 10}px)`;
     card.dataset.base = base;
     card.style.transform = base;
+    card.style.transition = 'none';
     card.innerHTML = `
       <img src="${profile.img}" alt="${profile.name}"
-           onerror="this.style.background='linear-gradient(135deg,#2d1b2e,#1a0b1e)'; this.style.opacity='0.6';">
+           onerror="this.style.opacity='0'">
       <div class="stamp like">LIKE</div>
       <div class="stamp nope">NOPE</div>
       <div class="profile-info">
@@ -716,15 +671,13 @@
     return card;
   }
 
-  function renderStack(animate = false) {
+  function renderStack(animate) {
     cards.innerHTML = '';
     const visible = profiles.slice(index, index + 3);
     for (let i = visible.length - 1; i >= 0; i--) {
       const card = createCard(visible[i], i);
       if (animate) {
         card.style.transition = 'transform .28s cubic-bezier(.22,.9,.3,1), opacity .24s ease';
-      } else {
-        card.style.transition = 'none';
       }
       cards.appendChild(card);
     }
@@ -763,7 +716,7 @@
     if (!dragging || !activeCard) return;
     dragging = false;
     activeCard.style.transition = 'transform .42s cubic-bezier(.22,.9,.3,1), opacity .32s ease';
-    if (currentX > 90) swipe('right');
+    if (currentX > 90)       swipe('right');
     else if (currentX < -90) swipe('left');
     else {
       activeCard.style.transform = activeCard.dataset.base || 'translateX(0)';
@@ -781,9 +734,8 @@
       ? `translateX(${window.innerWidth * 1.4}px) translateY(-26px) rotate(28deg)`
       : `translateX(${-window.innerWidth * 1.4}px) translateY(-26px) rotate(-28deg)`;
     activeCard.style.opacity = '0';
-
     setTimeout(() => {
-      index += 1;
+      index++;
       renderStack(true);
       if (liked) {
         matchedProfile = profile;
@@ -792,19 +744,23 @@
     }, 340);
   }
 
+  // ---- Notification ----
+
   function showNotification(profile) {
     notifAvatar.src = profile.img;
     notifTitle.textContent = `${profile.name} sent you a message 💌`;
     notification.classList.add('show');
-    setTimeout(() => {
-      if (!chatScreen.classList.contains('show')) {
-        notification.classList.remove('show');
-      }
+    clearTimeout(notifTimer);
+    notifTimer = setTimeout(() => {
+      notification.classList.remove('show');
     }, 5000);
   }
 
+  // ---- Chat ----
+
   function openChat() {
     if (!matchedProfile) return;
+    clearTimeout(notifTimer);
     notification.classList.remove('show');
     chatAvatar.src = matchedProfile.img;
     chatName.textContent = matchedProfile.name;
@@ -824,51 +780,63 @@
     messages.scrollTop = messages.scrollHeight;
   }
 
- function addChatVideo() {
-    const wrapper = document.createElement('div');
-    wrapper.style.cssText = 'align-self:flex-start; animation: bubbleIn .28s cubic-bezier(.34,1.56,.64,1) both;';
-
+  function addChatVideo() {
     const video = document.createElement('video');
     video.className = 'chat-video';
     video.src = CHAT_VIDEO;
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
-    video.setAttribute('webkit-playsinline', '');
     video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
     video.autoplay = true;
-    video.controls = false;
     video.preload = 'auto';
 
-    // Несколько попыток запустить
-    video.addEventListener('loadeddata', () => {
-      video.play().catch(() => {
-        // Если autoplay заблокирован — показываем poster и кнопку play
-        video.controls = true;
-      });
-    });
-
     video.addEventListener('canplay', () => {
-      video.play().catch(() => {
-        video.controls = true;
-      });
+      video.play().catch(() => { video.controls = true; });
     });
 
-    // Сразу пробуем
+    messages.appendChild(video);
+    messages.scrollTop = messages.scrollHeight;
+
     video.load();
     setTimeout(() => {
-      video.play().catch(() => {
-        video.controls = true;
-      });
-    }, 100);
+      video.play().catch(() => { video.controls = true; });
+    }, 200);
+  }
 
-    wrapper.appendChild(video);
-    messages.appendChild(wrapper);
-    messages.scrollTop = messages.scrollHeight;
-}
+  // ---- Events ----
 
-  backBtn.addEventListener('click', () => chatScreen.classList.remove('show'));
+  notification.addEventListener('click', openChat);
+notification.addEventListener('touchend', function(e) {
+  e.preventDefault();
+  openChat();
+});
 
+  likeBtn.addEventListener('click', () => swipe('right'));
+  nopeBtn.addEventListener('click', () => swipe('left'));
+
+  messageInput.addEventListener('click', () => {
+    if (messageSent) return;
+    messageInput.textContent = 'You too! Wanna meet? 😊';
+    messageInput.classList.add('filled');
+  });
+
+  sendBtn.addEventListener('click', () => {
+    if (messageSent || !messageInput.classList.contains('filled')) return;
+    messageSent = true;
+    addMessage('You too! Wanna meet? 😊', 'right');
+    messageInput.textContent = 'Message...';
+    messageInput.classList.remove('filled');
+    setTimeout(() => addMessage('Sure! 😏', 'left'), 700);
+    setTimeout(addChatVideo, 1200);
+  });
+
+  backBtn.addEventListener('click', () => {
+    chatScreen.classList.remove('show');
+  });
+
+  // ---- Init ----
   renderStack(false);
 </script>
 </body>
